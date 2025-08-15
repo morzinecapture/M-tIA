@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MétIA - IA Spécialisée par Secteur Métier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(ellipse at top, #0a0a0a 0%, #0d1117 50%, #000000 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(102, 126, 234, 0.2) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header with Glassmorphism */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2) drop-shadow(0 0 10px rgba(102, 126, 234, 0.3)); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            position: relative;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Hero Section Enhanced */
+        .hero {
+            padding: 180px 0 120px;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23667eea' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            opacity: 0.3;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(60px) translateY(60px); }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #ffecd2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
+            animation: heroFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: #b8c5d6;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-bottom: 100px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-secondary {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Demande Section */
+        .demande-banner {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 60px 0;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demande-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .demande-banner h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .demande-banner p {
+            font-size: 1.2rem;
+            color: #b8c5d6;
+            margin-bottom: 25px;
+        }
+
+        /* Agents Section Enhanced */
+        .agents-section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #b8c5d6;
+            margin-bottom: 70px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .agent-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border-radius: 25px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .agent-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .agent-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.25);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+        }
+
+        .agent-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .agent-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin-right: 20px;
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            overflow: hidden;
+        }
+
+        .agent-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .agent-avatar::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: avatarSpin 4s linear infinite;
+        }
+
+        @keyframes avatarSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .agent-info h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .agent-status {
+            color: #4ade80;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .agent-status::before {
+            content: '●';
+            color: #4ade80;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .agent-card p {
+            color: #b8c5d6;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .agent-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .feature-tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: #a5b4fc;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-tag:hover {
+            background: rgba(102, 126, 234, 0.3);
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        .agent-card .cta-button {
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 16px 32px;
+        }
+
+        /* Fonctionnalités Section */
+        .fonctions-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: 50px;
+            margin: 80px 20px;
+        }
+
+        .fonctions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .fonction-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+            border-radius: 25px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fonction-card:hover {
+            transform: translateY(-8px);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+        }
+
+        .fonction-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .fonction-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 20px;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .fonction-list {
+            list-style: none;
+            padding: 0;
+            color: #b8c5d6;
+        }
+
+        .fonction-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .fonction-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 0.8rem;
+        }
+
+        .fonction-list li:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 120px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 70px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 50px 30px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.5s ease;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .feature-item:hover::before {
+            left: 100%;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 25px;
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: iconRotate 6s linear infinite;
+        }
+
+        @keyframes iconRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Integrations */
+        .integrations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 60px;
+        }
+
+        .integration-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .integration-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .integration-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .integration-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .integration-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.3));
+        }
+
+        /* Footer Enhanced */
+        footer {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 80px 0 40px;
+            margin-top: 120px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul li a {
+            color: #b8c5d6;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-section ul li a:hover {
+            color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b8c5d6;
+            font-weight: 500;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .agents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .agent-avatar {
+                width: 60px;
+                height: 60px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Additional Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">MétIA</div>
+            <div class="nav-links">
+                <a href="#agents">Solutions Métier</a>
+                <a href="#fonctions">Fonctionnalités</a>
+                <a href="#createurs">Créateurs</a>
+                <a href="#entreprises">Entreprises</a>
+                <a href="#integrations">Intégrations</a>
+            </div>
+            <a href="#" class="cta-button">Commencer</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>L'IA Spécialisée par Métier</h1>
+                <p>Des solutions d'intelligence artificielle expertes dans chaque secteur d'activité. Transformez votre métier avec des agents IA qui comprennent parfaitement vos spécificités sectorielles.</p>
+                <div class="hero-buttons">
+                    <a href="#agents" class="cta-button">Découvrir nos Agents</a>
+                    <a href="#demande" class="btn-secondary">Demander un Devis</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="demande-banner fade-in" id="demande">
+                <h3>🚀 Votre Métier n'est pas encore disponible ?</h3>
+                <p>Nous créons des agents IA sur-mesure pour TOUS les secteurs d'activité. Demandez un devis personnalisé et obtenez votre solution métier en quelques semaines.</p>
+                <a href="#" class="cta-button">Demander un Devis Gratuit</a>
+            </div>
+        </section>
+
+        <section id="agents" class="agents-section">
+            <div class="container">
+                <h2 class="section-title fade-in">Nos Agents IA Métier</h2>
+                <p class="section-subtitle fade-in">Solutions prêtes à l'emploi, testées et optimisées par des professionnels du secteur</p>
+                
+                <div class="agents-grid">
+                    <div class="agent-card fade-in">
+                        <div class="agent-header">
+                            <div class="agent-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23667eea'/%3E%3Ctext x='50' y='58' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3E🏗️%3C/text%3E%3C/svg%3E" alt="ConstructIA Manager">
+                            </div>
+                            <div class="agent-info">
+                                <h3>ConstructIA Manager</h3>
+                                <div class="agent-status">Disponible maintenant</div>
+                            </div>
+                        </div>
+                        <p>Gestion complète des chantiers BTP avec devis vocal, planning intégré, suivi stocks et facturation automatique. Expertise normes DTU et réglementation construction française.</p>
+                        <div class="agent-features">
+                            <span class="feature-tag">Devis vocal</span>
+                            <span class="feature-tag">Planning chantiers</span>
+                            <span class="feature-tag">Suivi stocks</span>
+                            <span class="feature-tag">Facturation auto</span>
+                            <span class="feature-tag">Photos chantier</span>
+                            <span class="feature-tag">Chatbot 24/7</span>
+                        </div>
+                        <a href="#" class="cta-button">Essayer ConstructIA</a>
+                    </div>
+
+                    <div class="agent-card fade-in">
+                        <div class="agent-header">
+                            <div class="agent-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23764ba2'/%3E%3Ctext x='50' y='58' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3E🍽️%3C/text%3E%3C/svg%3E" alt="RestauBot Pro">
+                            </div>
+                            <div class="agent-info">
+                                <h3>RestauBot Pro</h3>
+                                <div class="agent-status">Disponible maintenant</div>
+                            </div>
+                        </div>
+                        <p>Assistant restaurant intelligent : réservations automatiques, menus optimisés, gestion personnel, promotions réseaux sociaux et conseils anti-gaspillage personnalisés.</p>
+                        <div class="agent-features">
+                            <span class="feature-tag">Réservations</span>
+                            <span class="feature-tag">Menu auto</span>
+                            <span class="feature-tag">Anti-gaspillage</span>
+                            <span class="feature-tag">Réseaux sociaux</span>
+                            <span class="feature-tag">Caisse/couverts</span>
+                            <span class="feature-tag">Conseiller client</span>
+                        </div>
+                        <a href="#" class="cta-button">Essayer RestauBot</a>
+                    </div>
+
+                    <div class="agent-card fade-in">
+                        <div class="agent-header">
+                            <div class="agent-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23f093fb'/%3E%3Ctext x='50' y='58' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3E🏥%3C/text%3E%3C/svg%3E" alt="Loxia Santé">
+                            </div>
+                            <div class="agent-info">
+                                <h3>Loxia Santé</h3>
+                                <div class="agent-status">Disponible maintenant</div>
+                            </div>
+                        </div>
+                        <p>Spécialiste infirmiers libéraux : transcription vocale NGAP intelligente, journal de soins automatique, mémoire patient sécurisée et intégration logiciels métier santé.</p>
+                        <div class="agent-features">
+                            <span class="feature-tag">Transcription NGAP</span>
+                            <span class="feature-tag">Journal soins</span>
+                            <span class="feature-tag">Mémoire patient</span>
+                            <span class="feature-tag">Cotations auto</span>
+                            <span class="feature-tag">API Albus</span>
+                            <span class="feature-tag">Agenda soins</span>
+                        </div>
+                        <a href="#" class="cta-button">Essayer Loxia</a>
+                    </div>
+
+                    <div class="agent-card fade-in">
+                        <div class="agent-header">
+                            <div class="agent-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23ffecd2'/%3E%3Ctext x='50' y='58' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3E📱%3C/text%3E%3C/svg%3E" alt="TelecomBot Support">
+                            </div>
+                            <div class="agent-info">
+                                <h3>TelecomBot Support</h3>
+                                <div class="agent-status">Disponible maintenant</div>
+                            </div>
+                        </div>
+                        <p>Expert téléphonie mobile : OCR factures intelligent, ventes automatisées, planning réparations optimisé, publications Facebook ciblées et diagnostic technique avancé.</p>
+                        <div class="agent-features">
+                            <span class="feature-tag">OCR factures</span>
+                            <span class="feature-tag">Ventes auto</span>
+                            <span class="feature-tag">Planning réparations</span>
+                            <span class="feature-tag">Pub Facebook</span>
+                            <span class="feature-tag">Diagnostic tech</span>
+                            <span class="feature-tag">Support 24/7</span>
+                        </div>
+                        <a href="#" class="cta-button">Essayer TelecomBot</a>
+                    </div>
+                </div>
+
+                <div class="demande-banner fade-in">
+                    <h3>🎯 Besoin d'un Agent pour votre Secteur ?</h3>
+                    <p>Coiffure, Garage Auto, Pharmacie, Cabinet Vétérinaire, Agence Immobilière... Nous développons votre solution IA métier sur-mesure en 2-4 semaines.</p>
+                    <a href="#" class="cta-button">Demander mon Agent IA</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="fonctions" class="fonctions-section">
+            <div class="container">
+                <h2 class="section-title fade-in">Fonctionnalités Détaillées par Secteur</h2>
+                <p class="section-subtitle fade-in">Chaque agent IA maîtrise parfaitement les outils, processus et réglementations spécifiques à son métier</p>
+                
+                <div class="fonctions-grid">
+                    <div class="fonction-card slide-in-left">
+                        <div class="fonction-header">
+                            <div class="fonction-icon">🏗️</div>
+                            <div>
+                                <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 700; margin-bottom: 5px;">ConstructIA Manager</h3>
+                                <p style="color: #667eea; font-size: 0.9rem; font-weight: 600;">Secteur BTP & Construction</p>
+                            </div>
+                        </div>
+                        <ul class="fonction-list">
+                            <li>Gestion planning chantiers (Google Agenda)</li>
+                            <li>Création de devis à la voix (voice-to-devis)</li>
+                            <li>Suivi stocks matériaux + alertes rupture</li>
+                            <li>Génération factures automatique (Canva)</li>
+                            <li>Récapitulatif quotidien par chantier</li>
+                            <li>Organisation photos chantiers (cloud)</li>
+                            <li>Suggestions matériel automatiques</li>
+                            <li>Chatbot clients 24/24 (prix, délais, prestations)</li>
+                        </ul>
+                    </div>
+
+                    <div class="fonction-card slide-in-right">
+                        <div class="fonction-header">
+                            <div class="fonction-icon">🍽️</div>
+                            <div>
+                                <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 700; margin-bottom: 5px;">RestauBot Pro</h3>
+                                <p style="color: #667eea; font-size: 0.9rem; font-weight: 600;">Secteur Restauration</p>
+                            </div>
+                        </div>
+                        <ul class="fonction-list">
+                            <li>Gestion réservations (Google Agenda)</li>
+                            <li>Suivi horaires du personnel</li>
+                            <li>Publication menu du jour automatique (Canva)</li>
+                            <li>5 suggestions plats anti-gaspillage quotidiennes</li>
+                            <li>Mémorisation couverts + caisse du jour</li>
+                            <li>Facturation automatique (template Canva)</li>
+                            <li>Classement photos factures (cloud)</li>
+                            <li>Publication Facebook automatique plat du jour</li>
+                            <li>Chatbot conseiller (menus, horaires, avis)</li>
+                        </ul>
+                    </div>
+
+                    <div class="fonction-card slide-in-left">
+                        <div class="fonction-header">
+                            <div class="fonction-icon">🏥</div>
+                            <div>
+                                <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 700; margin-bottom: 5px;">Loxia Santé</h3>
+                                <p style="color: #667eea; font-size: 0.9rem; font-weight: 600;">Infirmiers Libéraux</p>
+                            </div>
+                        </div>
+                        <ul class="fonction-list">
+                            <li>Module vocal : transcription note → NGAP (Whisper)</li>
+                            <li>Génération automatique journal de soins</li>
+                            <li>Intégration agenda soins + rappels automatiques</li>
+                            <li>Mémoire conversationnelle patient (historique)</li>
+                            <li>Proposition cotations NGAP contextualisées</li>
+                            <li>Intégration API Albus (envoi logiciel métier)</li>
+                            <li>Gestion liste patients (adresses, pathologies)</li>
+                            <li>Réponses automatiques questions patients</li>
+                        </ul>
+                    </div>
+
+                    <div class="fonction-card slide-in-right">
+                        <div class="fonction-header">
+                            <div class="fonction-icon">📱</div>
+                            <div>
+                                <h3 style="color: #ffffff; font-size: 1.4rem; font-weight: 700; margin-bottom: 5px;">TelecomBot Support</h3>
+                                <p style="color: #667eea; font-size: 0.9rem; font-weight: 600;">Magasin Téléphonie</p>
+                            </div>
+                        </div>
+                        <ul class="fonction-list">
+                            <li>Tri automatique factures (OCR + classement)</li>
+                            <li>Édition et envoi factures depuis texte libre</li>
+                            <li>Tableau ventes téléphones auto-mis à jour</li>
+                            <li>Génération idées publications Facebook</li>
+                            <li>Chatbot 24/24 (tarifs, modèles, réparations)</li>
+                            <li>Gestion agenda réparations</li>
+                            <li>Réponses expertes questions techniques</li>
+                            <li>Conseils compatibilité et diagnostic matériel</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="demande-banner fade-in" style="margin-top: 60px;">
+                    <h3>💡 Votre Métier a des Besoins Spécifiques ?</h3>
+                    <p>Nous adaptons chaque fonctionnalité à vos processus métier. Intégrations sur-mesure, workflows personnalisés et conformité réglementaire garantie.</p>
+                    <a href="#" class="cta-button">Personnaliser mon Agent</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="secteurs" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Pourquoi l'IA Sectorielle ?</h2>
+                <p class="section-subtitle fade-in">L'IA généraliste ne suffit plus. Chaque métier nécessite une expertise pointue, des données spécialisées et une compréhension fine des enjeux sectoriels.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Expertise Métier Profonde</h3>
+                        <p>Nos IA sont formées exclusivement sur des données sectorielles : réglementations, normes, pratiques et terminologie spécialisée de votre domaine d'activité.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">📚</div>
+                        <h3>Base de Connaissances Sectorielle</h3>
+                        <p>Accès à des milliers de références techniques, codes réglementaires, jurisprudences et bonnes pratiques actualisées en temps réel par secteur.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Conformité Réglementaire</h3>
+                        <p>Respect total des normes sectorielles : RGPD santé, normes BTP, réglementation ARCEP, codes déontologiques professionnels.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Déploiement Immédiat</h3>
+                        <p>Prêt à l'emploi dès l'installation. Pas de formation longue ni de configuration complexe. L'IA comprend votre métier instantanément.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Mise à Jour Continue</h3>
+                        <p>Evolution permanente avec les changements réglementaires, nouvelles normes et innovations de votre secteur d'activité.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">💼</div>
+                        <h3>ROI Sectoriel Optimisé</h3>
+                        <p>Automatisation des tâches métier spécifiques pour un retour sur investissement mesurable et adapté à votre activité.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="createurs" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Créateurs d'IA Sectorielle</h2>
+                <p class="section-subtitle fade-in">Développez des solutions IA ultra-spécialisées pour des niches métier. Monétisez votre expertise sectorielle avec notre plateforme.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Studio Sectoriel</h3>
+                        <p>Outils de création spécialisés par métier avec templates sectoriels, bases de données métier et frameworks réglementaires pré-configurés.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">💰</div>
+                        <h3>Monétisation Spécialisée</h3>
+                        <p>Revenus récurrents sur des niches métier rentables. Commission réduite pour les créateurs d'IA sectorielles hautement spécialisées.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">📊</div>
+                        <h3>Analytics Métier</h3>
+                        <p>Métriques spécialisées par secteur : taux d'adoption métier, satisfaction utilisateurs sectoriels, performance sur cas d'usage spécifiques.</p>
+                    </div>
+                </div>
+
+                <div class="demande-banner fade-in" style="margin-top: 60px;">
+                    <h3>👨‍💻 Vous êtes Expert dans votre Domaine ?</h3>
+                    <p>Transformez votre expertise métier en solution IA. Rejoignez notre programme créateur et générez des revenus passifs avec vos connaissances sectorielles.</p>
+                    <a href="#" class="cta-button">Devenir Créateur</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="entreprises" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Entreprise Multi-Sectorielle</h2>
+                <p class="section-subtitle fade-in">Déployez plusieurs IA sectorielles dans votre organisation. Orchestration intelligente multi-métiers pour les grandes entreprises.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">🏢</div>
+                        <h3>Orchestration Sectorielle</h3>
+                        <p>Gestion centralisée de multiples IA métier. Workflows inter-sectoriels et coordination automatisée entre vos différents services.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">🔧</div>
+                        <h3>Customisation Métier</h3>
+                        <p>Adaptation fine aux spécificités de chaque secteur de votre entreprise. Formation sur vos données métier confidentielles et processus internes.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Support Expert Sectoriel</h3>
+                        <p>Équipe de consultants spécialisés par métier. Accompagnement dédié pour optimiser le ROI de chaque solution sectorielle déployée.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="integrations" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Intégrations Sectorielles</h2>
+                <p class="section-subtitle fade-in">Connectivité native avec les logiciels métier de chaque secteur d'activité</p>
+                
+                <div class="integrations-grid">
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">🏗️</div>
+                        <span>Logiciels BTP</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">🏥</div>
+                        <span>Logiciels Santé</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">📱</div>
+                        <span>Outils Telecom</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">🔧</div>
+                        <span>GMAO/SAV</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">📧</div>
+                        <span>Gmail</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">💬</div>
+                        <span>WhatsApp</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">✈️</div>
+                        <span>Telegram</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">📝</div>
+                        <span>Notion</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">📊</div>
+                        <span>Airtable</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">💼</div>
+                        <span>Slack</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">🗂️</div>
+                        <span>Trello</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">📋</div>
+                        <span>Monday.com</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">📈</div>
+                        <span>HubSpot</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">💳</div>
+                        <span>Stripe</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">🛒</div>
+                        <span>Shopify</span>
+                    </div>
+                    <div class="integration-item fade-in">
+                        <div class="integration-icon">📅</div>
+                        <span>Google Agenda</span>
+                    </div>
+                </div>
+
+                <div class="demande-banner fade-in" style="margin-top: 60px;">
+                    <h3>🔌 Besoin d'une Intégration Spécifique ?</h3>
+                    <p>Nous connectons votre agent IA à n'importe quel logiciel métier : ERP, CRM, GMAO, logiciels spécialisés. API sur-mesure en quelques jours.</p>
+                    <a href="#" class="cta-button">Demander une Intégration</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Solutions IA</h4>
+                    <ul>
+                        <li><a href="#">ConstructIA Manager</a></li>
+                        <li><a href="#">RestauBot Pro</a></li>
+                        <li><a href="#">Loxia Santé</a></li>
+                        <li><a href="#">TelecomBot Support</a></li>
+                        <li><a href="#">Agents sur-mesure</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Communauté</h4>
+                    <ul>
+                        <li><a href="#">Créateurs</a></li>
+                        <li><a href="#">Forum Métier</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Entreprise</h4>
+                    <ul>
+                        <li><a href="#">Solutions Multi-sectorielles</a></li>
+                        <li><a href="#">Sécurité & Conformité</a></li>
+                        <li><a href="#">Support Expert</a></li>
+                        <li><a href="#">API & Intégrations</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Légal</h4>
+                    <ul>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Confidentialité</a></li>
+                        <li><a href="#">CGU</a></li>
+                        <li><a href="#">RGPD</a></li>
+                        <li><a href="#">Conformité Sectorielle</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MétIA - L'Intelligence Artificielle Spécialisée par Métier. Made in France 🇫🇷</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced header effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrolled = window.scrollY;
+            
+            if (scrolled > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.boxShadow = '0 8px 32px rgba(102, 126, 234, 0.2)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.8)';
+                header.style.boxShadow = '0 8px 32px rgba(102, 126, 234, 0.1)';
+            }
+        });
+
+        // Floating particles system
+        function createFloatingParticles() {
+            const particleContainer = document.createElement('div');
+            particleContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: -1;
+                overflow: hidden;
+            `;
+            document.body.appendChild(particleContainer);
+
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                const size = Math.random() * 4 + 1;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 20;
+                
+                particle.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: radial-gradient(circle, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.3) 50%, transparent 100%);
+                    border-radius: 50%;
+                    left: ${Math.random() * 100}%;
+                    animation: float ${duration}s ${delay}s linear infinite;
+                `;
+                
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // Add floating animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% {
+                    transform: translateY(100vh) translateX(0);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100px) translateX(${Math.random() * 200 - 100}px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize particles
+        createFloatingParticles();
+
+        // Mouse movement parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            document.querySelectorAll('.agent-avatar').forEach((avatar, index) => {
+                const speed = (index + 1) * 0.02;
+                const x = (mouseX - 0.5) * speed * 50;
+                const y = (mouseY - 0.5) * speed * 50;
+                avatar.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Loading animation for buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.href === '#' || this.href.includes('#')) {
+                    return;
+                }
+                
+                e.preventDefault();
+                const originalText = this.textContent;
+                this.textContent = 'Chargement...';
+                this.style.opacity = '0.7';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.opacity = '1';
+                }, 2000);
+            });
+        });
+
+        // Enhanced card interactions
+        document.querySelectorAll('.agent-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Dynamic counter animation for stats
+        function animateCounter(element, target, duration = 2000) {
+            let startTime = null;
+            const startValue = 0;
+            
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                
+                const currentValue = Math.floor(progress * target);
+                element.textContent = currentValue;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animation);
+                }
+            }
+            
+            requestAnimationFrame(animation);
+        }
+
+        // Typing effect for hero subtitle
+        function typeWriter(element, text, speed = 50) {
+            element.textContent = '';
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', () => {
+            const subtitle = document.querySelector('.hero p');
+            const originalText = subtitle.textContent;
+            setTimeout(() => {
+                typeWriter(subtitle, originalText, 30);
+            }, 1000);
+        });
+
+        // Smooth reveal for sections
+        const revealSections = () => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const scroll = window.scrollY;
+                const windowHeight = window.innerHeight;
+                
+                if (scroll > sectionTop - windowHeight + sectionHeight / 4) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealSections);
+
+        // Add hover sound effect simulation
+        document.querySelectorAll('.agent-card, .feature-item, .integration-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                // Simulate hover feedback with visual pulse
+                item.style.animation = 'pulse 0.3s ease-in-out';
+                setTimeout(() => {
+                    item.style.animation = '';
+                }, 300);
+            });
+        });
+
+        // Mobile menu toggle (for responsive design)
+        const createMobileMenu = () => {
+            if (window.innerWidth <= 768) {
+                const nav = document.querySelector('nav');
+                const navLinks = document.querySelector('.nav-links');
+                
+                if (!document.querySelector('.mobile-menu-toggle')) {
+                    const toggle = document.createElement('button');
+                    toggle.className = 'mobile-menu-toggle';
+                    toggle.innerHTML = '☰';
+                    toggle.style.cssText = `
+                        display: block;
+                        background: none;
+                        border: none;
+                        color: white;
+                        font-size: 24px;
+                        cursor: pointer;
+                        padding: 10px;
+                    `;
+                    
+                    toggle.addEventListener('click', () => {
+                        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                        navLinks.style.flexDirection = 'column';
+                        navLinks.style.position = 'absolute';
+                        navLinks.style.top = '100%';
+                        navLinks.style.left = '0';
+                        navLinks.style.right = '0';
+                        navLinks.style.background = 'rgba(10, 10, 10, 0.95)';
+                        navLinks.style.padding = '20px';
+                        navLinks.style.backdropFilter = 'blur(20px)';
+                    });
+                    
+                    nav.appendChild(toggle);
+                }
+            }
+        };
+
+        window.addEventListener('resize', createMobileMenu);
+        createMobileMenu();
+
+        // Preloader animation
+        const showPreloader = () => {
+            const preloader = document.createElement('div');
+            preloader.id = 'preloader';
+            preloader.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                transition: opacity 0.5s ease-out;
+            `;
+            
+            const logo = document.createElement('div');
+            logo.textContent = 'MétIA';
+            logo.style.cssText = `
+                font-size: 4rem;
+                font-weight: 900;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: logoGlow 2s ease-in-out infinite alternate;
+            `;
+            
+            preloader.appendChild(logo);
+            document.body.appendChild(preloader);
+            
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(preloader);
+                }, 500);
+            }, 2000);
+        };
+
+        // Initialize preloader
+        // showPreloader();
+
+        // Advanced scroll effects
+        let ticking = false;
+        
+        const updateScrollEffects = () => {
+            const scrolled = window.scrollY;
+            const rate = scrolled * -0.5;
+            
+            // Parallax background
+            document.body.style.backgroundPosition = `center ${rate}px`;
+            
+            // Update header transparency
+            const header = document.querySelector('header');
+            const opacity = Math.min(scrolled / 100, 0.95);
+            header.style.background = `rgba(10, 10, 10, ${opacity})`;
+            
+            ticking = false;
+        };
+
+        const requestScrollUpdate = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollEffects);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', requestScrollUpdate);
+
+        // Initialize all animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add initial animation classes
+            document.body.classList.add('loaded');
+            
+            // Stagger animation for cards
+            document.querySelectorAll('.agent-card').forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        console.log('🚀 MétIA - Interface IA Sectorielle chargée avec succès !');
+    </script>
+</body>
+</html>
